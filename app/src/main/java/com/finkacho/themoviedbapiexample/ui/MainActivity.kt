@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.finkacho.themoviedbapiexample.R
+import com.finkacho.themoviedbapiexample.adapter.MovieListAdapter
 import com.finkacho.themoviedbapiexample.model.MoviePage
 import com.finkacho.themoviedbapiexample.service.MovieClient
 import retrofit2.Call
@@ -15,6 +16,7 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerAdapter: MovieListAdapter
     private lateinit var viewManager: GridLayoutManager
 
     private val API_KEY: String = "158b2086440f843d5a934416a3832919"
@@ -26,9 +28,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewManager = GridLayoutManager(this,2)
+        recyclerAdapter = MovieListAdapter()
 
         recyclerView = findViewById<RecyclerView>(R.id.mainMovieList).apply{
             layoutManager = viewManager
+            adapter = recyclerAdapter
         }
 
         val client: MovieClient = MovieClient.create()
@@ -41,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<MoviePage>?, response: Response<MoviePage>?) {
                 val movies = response?.body()?.movies
-                Log.d("MAINACTIVITY.CLASS", movies?.size.toString())
+                recyclerAdapter.addData(movies)
             }
 
         })
