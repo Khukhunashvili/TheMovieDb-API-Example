@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.finkacho.themoviedbapiexample.R
 import com.finkacho.themoviedbapiexample.model.Movie
 
 class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>(){
 
-    var mMovies: MutableList<Movie> = mutableListOf<Movie>()
+    var mMovies: MutableList<Movie> = mutableListOf()
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
@@ -20,8 +21,11 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>(){
         val movieTitle: TextView = view.findViewById(R.id.movieTitle)
         val cardLayout: RelativeLayout = view.findViewById(R.id.cardLayout)
 
+        val imagePath: String = "https://image.tmdb.org/t/p/w500"
+
         fun bind(movie: Movie){
             movieTitle.text = movie.title
+            Glide.with(view).load(imagePath+movie.posterPath).into(movieImage)
             cardLayout.setOnClickListener(this)
         }
 
