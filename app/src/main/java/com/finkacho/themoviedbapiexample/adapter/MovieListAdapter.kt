@@ -1,5 +1,6 @@
 package com.finkacho.themoviedbapiexample.adapter
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.finkacho.themoviedbapiexample.R
 import com.finkacho.themoviedbapiexample.model.Movie
+import com.finkacho.themoviedbapiexample.ui.DetailsActivity
 
 class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>(){
 
@@ -21,16 +23,25 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>(){
         val movieTitle: TextView = view.findViewById(R.id.movieTitle)
         val cardLayout: RelativeLayout = view.findViewById(R.id.cardLayout)
 
-        val imagePath: String = "https://image.tmdb.org/t/p/w500"
+        private val imagePath: String = "https://image.tmdb.org/t/p/w500"
+
+        lateinit var cMovie: Movie
 
         fun bind(movie: Movie){
             movieTitle.text = movie.title
+            cMovie = movie
             Glide.with(view).load(imagePath+movie.posterPath).into(movieImage)
             cardLayout.setOnClickListener(this)
         }
 
         override fun onClick(v: View?) {
-
+            val intent = Intent(v?.context, DetailsActivity::class.java)
+            intent.putExtra("TITLE", cMovie.title)
+            intent.putExtra("RELEASE_DATE", cMovie.releaseDate)
+            intent.putExtra("VOTE_AVERAGE", cMovie.voteAverage)
+            intent.putExtra("OVERVIEW", cMovie.overview)
+            intent.putExtra("POSTER_PATH", cMovie.posterPath)
+            v?.context?.startActivity(intent)
         }
 
     }
