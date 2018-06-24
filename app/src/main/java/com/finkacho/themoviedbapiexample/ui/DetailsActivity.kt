@@ -1,5 +1,7 @@
 package com.finkacho.themoviedbapiexample.ui
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -35,7 +37,7 @@ class DetailsActivity : AppCompatActivity() {
         Glide.with(this).load(imagePath+posterPath).into(object : SimpleTarget<Drawable>() {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
                 detailsView.background = resource
-                detailsImage.setImageDrawable(resource)
+                detailsImage.setImageBitmap((resource as BitmapDrawable).bitmap)
             }
         })
         detailsDate.text = releaseDate

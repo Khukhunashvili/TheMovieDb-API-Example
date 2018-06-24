@@ -7,7 +7,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/movieImage"/>
+        android:id="@+id/detailsImage"
+        android:transitionName="image"/>
 
     <TextView
         android:layout_width="match_parent"

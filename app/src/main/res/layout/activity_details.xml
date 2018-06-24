@@ -1,86 +1,83 @@
-<RelativeLayout android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/detailsView"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ScrollView android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CC000000">
+        android:background="#E6000000">
 
-        <android.support.constraint.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="275dp"
-                android:id="@+id/imageLayout">
+                android:id="@+id/detailsImage"
+                android:transitionName="image"
+                android:layout_margin="10dp"
+                tools:targetApi="lollipop"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detailsImage"
+                android:background="@color/colorPrimary"
+                android:id="@+id/dateLayout"
+                android:gravity="center"
+                android:padding="5dp">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/detailsImage"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/colorPrimary"
-                    android:gravity="center"
-                    android:padding="5dp">
+                    android:src="@drawable/date_icon"
+                    android:id="@+id/dateIcon"/>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/date_icon"
-                        android:id="@+id/dateIcon"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/dateIcon"
+                    android:layout_marginStart="25dp"
+                    android:id="@+id/detailsDate"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/dateIcon"
-                        android:layout_marginStart="25dp"
-                        android:id="@+id/detailsDate"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/detailsDate"
+                    android:id="@+id/scoreIcon"
+                    android:layout_marginStart="50dp"
+                    android:src="@drawable/score_icon"
+                    />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/detailsDate"
-                        android:id="@+id/scoreIcon"
-                        android:layout_marginStart="50dp"
-                        android:src="@drawable/score_icon"
-                        />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/scoreIcon"
+                    android:layout_marginStart="25dp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:id="@+id/detailsScore"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/scoreIcon"
-                        android:layout_marginStart="25dp"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold"
-                        android:id="@+id/detailsScore"/>
-
-
-                </RelativeLayout>
 
             </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/imageLayout"
-                android:textColor="@android:color/white"
                 android:id="@+id/detailsOverview"
-                android:padding="20dp"
-                />
+                android:layout_below="@id/dateLayout"
+                android:textColor="@android:color/white"
+                android:padding="20dp"/>
+
+        </RelativeLayout>
 
 
-
-        </android.support.constraint.ConstraintLayout>
     </ScrollView>
-</RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
