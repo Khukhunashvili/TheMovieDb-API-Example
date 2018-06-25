@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface MovieClient {
     @GET("movie/popular")
-    fun getMovies(@Query("api_key") api_key: String):Call<MoviePage>
+    fun getMovies(@Query("api_key") api_key: String, @Query("page") page: Int):Call<MoviePage>
 
 
     companion object Factory{
